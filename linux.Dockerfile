@@ -10,9 +10,7 @@ COPY ./dist/build-cache /output
 RUN mkdir --parents /output &&`
     /app/steamcmd.sh +force_install_dir /output +login anonymous +app_update 3557020 validate +quit;
 
-FROM lacledeslan/gamesvr-tf2
-
-COPY --chown=TF2:root --from=tf2class-builder /output /app
+FROM lacledeslan/gamesvr-tf2:64-bit
 
 HEALTHCHECK NONE
 
@@ -29,18 +27,18 @@ LABEL maintainer="Laclede's LAN <contact @lacledeslan.com>" `
       org.label-schema.vcs-url="https://github.com/LacledesLAN/gamesvr-tf2-classified"
 
 
-COPY --chown=TF2:root ./sourcemod.linux /app/tfclassified/
-COPY --chown=TF2:root ./sourcemod-configs /app/tfclassified/
-COPY --chown=TF2:root ./dist /app/
+COPY --chown=TF2:root --from=tf2class-builder /output /app
+COPY --chown=TF2:root ./dist /app/classified
 COPY --chown=TF2:root ./ll-tests/*.sh /app/ll-tests
 
+
 # UPDATE USERNAME & ensure permissions
-RUN usermod -l TF2 TF2 &&`
+RUN usermod -l TF2classified TF2 &&`
     chmod +x /app/ll-tests/*.sh &&`
     mkdir -p /app/tf2/logs &&`
     chmod 774 /app/tf2/logs
 
-USER TF2class
+USER TF2classified
 
 WORKDIR /app/
 
