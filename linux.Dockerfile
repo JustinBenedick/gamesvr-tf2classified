@@ -29,7 +29,7 @@ LABEL maintainer="Laclede's LAN <contact @lacledeslan.com>" `
 
 COPY --chown=TF2:root --from=tf2class-builder /output /app
 COPY --chown=TF2:root ./dist /app/classified
-COPY --chown=TF2:root ./ll-tests/*.sh /app/ll-tests
+#COPY --chown=TF2:root ./ll-tests/*.sh /app/ll-tests
 
 
 # UPDATE USERNAME & ensure permissions
