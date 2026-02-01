@@ -2,55 +2,9 @@ Basic update command
 steamcmd.sh +force_install_dir /dir/tf2classified +login anonymous +app_update 3557020 +quit
 
 Basic run command 
-srcds.sh -game tf2classified -console +map ctf_2fort -usercon +hostname "LacledesLAN_TF2Classified" -insecure +ip 0.0.0.0 +ip $ipaddrmain -port 27015 +rcon_password "$rconpassword" +sv_lan 0
+./srcds.sh -game tf2classified -console +map ctf_2fort -usercon +hostname "LacledesLAN_TF2Classified" -insecure +ip 0.0.0.0 +ip 10.0.0.1 -port 27015 +rcon_password "$rconpassword" +sv_lan 0
+
+https://wiki.tf2classic.com/wiki/Dedicated_Linux_server
 
 
-
-Installing the live TF2 server
-
-The live version of TF2's dedicated server is required to run a Classified server.
-
-# sudo -Hu srcds bash
-$ cd ~
-$ . /etc/environment
-$ steamcmd
-Steam>force_install_dir /home/srcds/tf
-Steam>login anonymous
-Steam>app_update 232250 validate
-Steam>quit
-
-Installing the dedicated server
-
-Ensure you've quit SteamCMD before continuing.
-
-$ cd ~
-$ . /etc/environment
-$ steamcmd
-Steam>force_install_dir /home/srcds/classified
-Steam>login anonymous
-Steam>app_update 3557020 validate
-Steam>quit
-
-
-Fixing libraries with symlinks
-
-Next we'll need to make some symlinks, since there's some issues with the installed libraries. Your server will not run unless these steps are followed.
-
-First, let's remove the existing libvstdlib.so and replace it with a symlink
-
-$ cd ~/classified/bin/linux64
-$ rm libvstdlib.so
-$ ln -s libvstdlib_srv.so libvstdlib.so
-
-We'll also need to symlink one of SteamCMD's libraries to a special Steam directory. Note that it's not from within the bin folder.
-
-$ mkdir -p ~/.steam/sdk64
-$ ln -s ~/classified/linux64/steamclient.so ~/.steam/sdk64/
-
-Testing the server
-
-Before proceeding, we can manually run the server to make sure the install was successful.
-
-$ cd ~/classified
-$ ./srcds.sh -tf_path ~/tf +map ctf_2fort +sv_password changethis
-
+debian:bookworm-slim
