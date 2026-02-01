@@ -1,0 +1,31 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Latest - Build & Test",
+            "type": "shell",
+            "command": "docker run -it --rm lacledeslan/gamesvr-tf2classified ./ll-tests/gamesvr-tf2classified.sh;",
+            "dependsOn": "Latest - Build Docker Image",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Latest - Build Docker Image",
+            "type": "docker-build",
+            "dockerBuild": {
+                "context": "${workspaceFolder}",
+                "dockerfile": "${workspaceFolder}/linux.Dockerfile",
+                "tag": "lacledeslan/gamesvr-tf2classified:latest",
+                "labels": {
+                    "com.lacledeslan.build-node": "${env:computername}",
+                }
+            }
+        }
+    ]
+}
