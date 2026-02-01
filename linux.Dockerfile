@@ -10,32 +10,39 @@ COPY ./dist/build-cache /output
 RUN mkdir --parents /output &&`
     /app/steamcmd.sh +force_install_dir /output +login anonymous +app_update 3557020 validate +quit;
 
+FROM lacledeslan/gamesvr-tf2
 
-# Grab x64 version of steamclient.so
-RUN mkdir --parents /output/.steam/sdk64/ /app/ll-tests &&`
-    cp /app/linux64/steamclient.so /output/.steam/sdk64/steamclient.so;
+COPY --chown=TF2:root --from=tf2class-builder /output /app
 
-FROM debian:trixie-slim
+HEALTHCHECK NONE
 
-ARG BUILDNODE=unspecified
-ARG SOURCE_COMMIT=unspecified
+ARG BUILDNODE="unspecified"
+ARG SOURCE_COMMIT
 
-RUN apt-get update &&`
-    dpkg --add-architecture i386 &&`
-    apt-get install --no-install-recommends --no-install-suggests -y `
-        ca-certificates locales locales-all glibc-source tmux &&`
-    apt-get clean &&`
-    rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* &&`
-    echo "LC_ALL=en_US.UTF-8" >> /etc/environment &&`
-    useradd --home /app --gid root --system TF2class &&`
-    mkdir --parents /app &&`
-    chown TF2class:root -R /app;
+LABEL maintainer="Laclede's LAN <contact @lacledeslan.com>" `
+      com.lacledeslan.build-node=$BUILDNODE `
+      org.label-schema.schema-version="1.0" `
+      org.label-schema.url="https://github.com/LacledesLAN/README.1ST" `
+      org.label-schema.vcs-ref=$SOURCE_COMMIT `
+      org.label-schema.vendor="Laclede's LAN" `
+      org.label-schema.description="LL Team Fortress 2 Claassified" `
+      org.label-schema.vcs-url="https://github.com/LacledesLAN/gamesvr-tf2-classified"
 
-COPY --chown=TF2class:root --from=tf2class-builder /output /app
+
+COPY --chown=TF2:root ./sourcemod.linux /app/tfclassified/
+COPY --chown=TF2:root ./sourcemod-configs /app/tfclassified/
+COPY --chown=TF2:root ./dist /app/
+COPY --chown=TF2:root ./ll-tests/*.sh /app/ll-tests
+
+# UPDATE USERNAME & ensure permissions
+RUN usermod -l TF2 TF2 &&`
+    chmod +x /app/ll-tests/*.sh &&`
+    mkdir -p /app/tf2/logs &&`
+    chmod 774 /app/tf2/logs
 
 USER TF2class
 
-WORKDIR /app
+WORKDIR /app/
 
 CMD ["/bin/bash"]
 
