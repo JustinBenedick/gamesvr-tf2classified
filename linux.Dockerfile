@@ -14,6 +14,7 @@ FROM lacledeslan/gamesvr-tf2:64-bit
 
 HEALTHCHECK NONE
 
+
 ARG BUILDNODE="unspecified"
 ARG SOURCE_COMMIT
 
@@ -23,7 +24,7 @@ LABEL maintainer="Laclede's LAN <contact @lacledeslan.com>" `
       org.label-schema.url="https://github.com/LacledesLAN/README.1ST" `
       org.label-schema.vcs-ref=$SOURCE_COMMIT `
       org.label-schema.vendor="Laclede's LAN" `
-      org.label-schema.description="LL Team Fortress 2 Claassified" `
+      org.label-schema.description="LL Team Fortress 2 Classified" `
       org.label-schema.vcs-url="https://github.com/LacledesLAN/gamesvr-tf2-classified"
 
 
