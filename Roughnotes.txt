@@ -2,9 +2,8 @@ Basic update command
 steamcmd.sh +force_install_dir /dir/tf2classified +login anonymous +app_update 3557020 +quit
 
 Basic run command 
-./srcds.sh -game tf2classified -tf_path /app/tf -console +map ctf_2fort -usercon +hostname "LacledesLAN_TF2Classified" -insecure +ip 0.0.0.0 +ip 10.0.0.1 -port 27015 +rcon_password "$rconpassword" +sv_lan 0
+cd .
 
 https://wiki.tf2classic.com/wiki/Dedicated_Linux_server
 
 
-debian:bookworm-slim

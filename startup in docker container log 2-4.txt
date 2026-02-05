@@ -1,0 +1,42 @@
+
+sysoper@beanlinbox:~$ docker run -it lacledeslan/gamesvr-tf2classified
+TF2classified@01afd146630f:~$ ./srcds.sh -game tf2classified -tf_path /app/tf -console +map ctf_2fort -usercon +hostname "LacledesLAN_TF2Classified" -insecure +ip 0.0.0.0 +ip 10.0.0.1 -port 27015 +rcon_password "$rconpassword" +sv_lan 0
+[S_API] SteamAPI_Init(): SteamAPI_IsSteamRunning() did not locate a running instance of Steam.
+[S_API] SteamAPI_Init(): Loaded '/app/.steam/sdk64/steamclient.so' OK.
+[S_API FAIL] SteamAPI_Init() failed; create pipe failed.SteamAPI_Init failed!
+
+WARNING: Failed to load 32-bit libtinfo.so.5 or libncurses.so.5.
+  Please install (lib32tinfo5 / ncurses-libs.i686 / equivalent) to enable readline.
+
+Using shader api: shaderapiempty_srv.so
+Using Breakpad minidump system. Version: 5002 AppID: 3557020
+Setting breakpad minidump AppID = 3557020
+Using breakpad crash handler
+Loaded 2 VPK file hashes from /app/tf2classified/vpks/tf2c_assets.vpk for pure server operation.
+Loaded 2 VPK file hashes from /app/tf2classified/vpks/tf2c_assets.vpk for pure server operation.
+Loaded 2 VPK file hashes from /app/tf2classified/vpks/tf2c_assets.vpk for pure server operation.
+File hash information not found: Hashing all VPK files for pure server operation.
+Loaded 2 VPK file hashes from /app/tf2classified/vpks/mb2_tf_content.vpk for pure server operation.
+VPK chunk hash hash does not match. File corrupted or modified.
+Loaded 2 VPK file hashes from /app/tf2classified/vpks/mb2_tf_content.vpk for pure server operation.
+VPK chunk hash hash does not match. File corrupted or modified.
+Loaded 2 VPK file hashes from /app/tf2classified/vpks/mb2_tf_content.vpk for pure server operation.
+File hash information not found: Hashing all VPK files for pure server operation.
+Loaded 47 VPK file hashes from /app/tf2classified/vpks/mb2_shared_content.vpk for pure server operation.
+VPK chunk hash hash does not match. File corrupted or modified.
+Loaded 47 VPK file hashes from /app/tf2classified/vpks/mb2_shared_content.vpk for pure server operation.
+VPK chunk hash hash does not match. File corrupted or modified.
+Loaded 47 VPK file hashes from /app/tf2classified/vpks/mb2_shared_content.vpk for pure server operation.
+File hash information not found: Hashing all VPK files for pure server operation.
+Loaded 13 VPK file hashes from /app/tf2classified/vpks/tf2c_overrides.vpk for pure server operation.
+VPK chunk hash hash does not match. File corrupted or modified.
+Loaded 13 VPK file hashes from /app/tf2classified/vpks/tf2c_overrides.vpk for pure server operation.
+server_srv.so loaded for "Team Fortress"
+Parent cvar in server.dll not allowed (tf_bot_flag_escort_range)
+FATAL ERROR: Host_Error: IDLLFunctions::DLLInit returned false.
+
+
+Looking up breakpad interfaces from steamclient
+Calling BreakpadMiniDumpSystemInit
+./srcds.sh: line 75:    11 Segmentation fault      (core dumped) ${GAME_DEBUGGER} "${GAMEROOT}"/${GAMEEXE} "$@"
+TF2classified@01afd146630f:~$
