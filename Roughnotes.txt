@@ -6,4 +6,7 @@ cd .
 
 https://wiki.tf2classic.com/wiki/Dedicated_Linux_server
 
+docker run -it -p=27015:27015/tcp -p=27020:27020/tcp -p=27015:27015/udp -p=27020:27020/udp lacledeslan/gamesvr-tf2classified:latest
 
+
+./srcds.sh -game tf2classified -tf_path /app -console +map ctf_2fort -usercon +hostname "LacledesLAN_TF2Classified" -insecure +ip 0.0.0.0  -port 27015 +rcon_password "$rconpassword" +sv_lan 0 +sv_pure 0
