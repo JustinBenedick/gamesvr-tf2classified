@@ -34,15 +34,15 @@ LABEL maintainer="Laclede's LAN <contact @lacledeslan.com>" `
 
 
 COPY --chown=TF2:root --from=tf2class-builder /output /app2
-COPY --chown=TF2:root ./dist /app2/tf2classified
-#COPY --chown=TF2:root ./ll-tests/*.sh /app/ll-tests
+COPY --chown=TF2:root ./dist /app2/
+COPY --chown=TF2:root ./ll-tests/*.sh /app2/ll-tests/
 
 
 # UPDATE USERNAME & ensure permissions
-RUN usermod -l TF2classified TF2 
-#    chmod +x /app2/ll-tests/*.sh &&`
-#    mkdir -p /app2/tf2/logs &&`
-#    chmod 774 /app/tf2/logs
+RUN usermod -l TF2classified TF2 &&`
+    chmod +x /app2/ll-tests/*.sh &&`
+    mkdir -p /app2/tf2classified/logs/ &&`
+    chmod 774 /app2/tf2classified/logs/
 
 USER TF2classified
 
